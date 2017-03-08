@@ -22,5 +22,8 @@ class Applicant extends Model
         'updated_at'
     ];
 
-
+    protected $dates = [
+        'birthday'
+    ];
+    
 }
