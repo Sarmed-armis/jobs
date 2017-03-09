@@ -23,10 +23,7 @@ class Applicant extends Model
         'created_at',
         'updated_at'
     ];
-  
-    protected $dates = [
-        'birthday'
-    ];
+
 
     public function city()
     {
@@ -37,5 +34,10 @@ class Applicant extends Model
     {
         return $this->hasMany('App\ApplicantAnswers','applicant_id','id');
     }
+
+
+
+
+
 
 }
