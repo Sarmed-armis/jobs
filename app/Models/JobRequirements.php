@@ -16,4 +16,5 @@ class JobRequirements extends Model
     ];
 
     public $timestamps = false;
+
 }

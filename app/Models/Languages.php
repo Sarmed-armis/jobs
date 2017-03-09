@@ -14,4 +14,7 @@ class Languages extends Model
     ];
 
     public $timestamps = false;
+
+
+
 }

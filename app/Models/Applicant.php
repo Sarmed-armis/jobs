@@ -17,10 +17,27 @@ class Applicant extends Model
         'email',
         'cv',
         'city_id',
+        'job_id',
+        'status',
         'why_choose_us',
         'created_at',
         'updated_at'
     ];
+
+
+    public function city()
+    {
+        return $this->hasOne('App\Cities','city_id','id');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\ApplicantAnswers','applicant_id','id');
+    }
+
+
+
+
 
 
 }
