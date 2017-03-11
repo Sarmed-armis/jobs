@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use \App\Models\QuestionTypes as questionTypes;
 
-class questionTypesSeedr extends Seeder
+class QuestionTypesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

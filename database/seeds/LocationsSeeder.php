@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use \App\Models\Locations as Location;
-class locationsSeedr extends Seeder
+class LocationsSeeder extends Seeder
 {
     /**
      * Run the database seeds.

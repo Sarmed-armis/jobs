@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Cities as City;
 
-class citesSeeder extends Seeder
+class CitesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
