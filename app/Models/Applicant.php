@@ -17,6 +17,8 @@ class Applicant extends Model
         'email',
         'cv',
         'city_id',
+        'job_id',
+        'status',
         'why_choose_us',
         'created_at',
         'updated_at'
@@ -25,5 +27,15 @@ class Applicant extends Model
     protected $dates = [
         'birthday'
     ];
-    
+
+    public function city()
+    {
+        return $this->hasOne('App\Models\Cities','city_id','id');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Models\ApplicantAnswers','applicant_id','id');
+    }
+
 }

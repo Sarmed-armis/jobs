@@ -15,6 +15,7 @@ class CreateApplicantsTable extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('job_id');
             $table->string('gender');
             $table->string('firstname');
             $table->string('lastname');
@@ -24,6 +25,7 @@ class CreateApplicantsTable extends Migration
             $table->string('cv');
             $table->integer('city_id');
             $table->string('why_choose_us');
+            $table->smallInteger('status');
             $table->timestamps();
         });
     }

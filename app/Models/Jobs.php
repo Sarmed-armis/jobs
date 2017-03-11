@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jobs extends Model
 {
-
-
     protected $table = 'jobs';
 
     protected $fillable =[
@@ -29,4 +27,34 @@ class Jobs extends Model
     protected $dates = [
       'expiry'
     ];
+
+    public function requirements()
+    {
+        return $this->hasMany('App\Models\JobRequirements','job_id','id');
+    }
+
+    public function responsibilities()
+    {
+        return $this->hasMany('App\Models\JobResponsibilities','job_id','id');
+    }
+
+    public function languages()
+    {
+        return $this->hasMany('App\Models\JobLanguage','job_id','id');
+    }
+
+    public function location()
+    {
+        return $this->hasOne('App\Models\Locations','location_id','id');
+    }
+
+    public function department()
+    {
+        return $this->hasOne('App\Models\Departments','department_id','id');
+    }
+
+    public function questions()
+    {
+        return $this->hasMany('App\Models\Questions','job_id','id');
+    }
 }

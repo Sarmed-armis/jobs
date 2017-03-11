@@ -16,4 +16,14 @@ class Questions extends Model
     ];
 
     public $timestamps = false;
+
+    public function type()
+    {
+        return $this->hasOne('App\Models\QuestionTypes','type_id','id');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Models\QuestionAnswer','question_id','id');
+    }
 }

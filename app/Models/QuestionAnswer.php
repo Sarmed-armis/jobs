@@ -14,6 +14,5 @@ class QuestionAnswer extends Model
         'question_id',
     ];
 
-
     public $timestamps = false;
 }

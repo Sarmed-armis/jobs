@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobLanguage extends Model
 {
-
     protected $table = 'job_languages';
 
     protected $fillable = [
