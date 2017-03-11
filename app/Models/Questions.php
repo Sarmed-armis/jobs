@@ -19,11 +19,11 @@ class Questions extends Model
 
     public function type()
     {
-        return $this->hasOne('App\QuestionTypes','type_id','id');
+        return $this->hasOne('App\Models\QuestionTypes','type_id','id');
     }
 
     public function answers()
     {
-        return $this->hasMany('App\QuestionAnswer','question_id','id');
+        return $this->hasMany('App\Models\QuestionAnswer','question_id','id');
     }
 }
