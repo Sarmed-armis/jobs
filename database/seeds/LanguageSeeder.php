@@ -14,18 +14,16 @@ class LanguageSeeder extends Seeder
     {
         languagesModel::truncate();
 
-        languagesModel::insert(
+        languagesModel::insert([
             [
-                [
-                    'language_name' => 'Arabic'
-                ],
-                [
-                    'language_name' => 'English'
-                ],
-                [
-                    'language_name' => 'Kurdi'
-                ],
-            ]
-        );
+                'language_name' => 'Arabic'
+            ],
+            [
+                'language_name' => 'English'
+            ],
+            [
+                'language_name' => 'Kurdi'
+            ],
+        ]);
     }
 }
