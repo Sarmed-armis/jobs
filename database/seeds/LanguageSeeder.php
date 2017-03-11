@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use \App\Models\Languages as Language;
+use \App\Models\Languages as languagesModel;
 
-class LanguagesSeeder extends Seeder
+class LanguageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +12,9 @@ class LanguagesSeeder extends Seeder
      */
     public function run()
     {
-        Language::truncate();
-        Language::insert(
+        languagesModel::truncate();
+
+        languagesModel::insert(
             [
                 [
                     'language_name' => 'Arabic'
@@ -27,5 +28,4 @@ class LanguagesSeeder extends Seeder
             ]
         );
     }
-
 }

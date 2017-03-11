@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use \App\Models\QuestionTypes as questionTypes;
+use \App\Models\QuestionTypes as questionTypesModel;
 
-class QuestionTypesSeeder extends Seeder
+class QuestionTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +12,9 @@ class QuestionTypesSeeder extends Seeder
      */
     public function run()
     {
-        questionTypes::truncate();
-        questionTypes::insert([
+        questionTypesModel::truncate();
+
+        questionTypesModel::insert([
             [
                 'type' => 'input'
             ],

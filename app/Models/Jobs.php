@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jobs extends Model
 {
-
-
     protected $table = 'jobs';
 
     protected $fillable =[
@@ -37,7 +35,6 @@ class Jobs extends Model
 
     public function responsibilities()
     {
-
         return $this->hasMany('App\Models\JobResponsibilities','job_id','id');
     }
 

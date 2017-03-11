@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobRequirements extends Model
 {
-
     protected $table = 'job_requirements';
-
 
     protected $fillable = [
         'description',
@@ -16,5 +14,4 @@ class JobRequirements extends Model
     ];
 
     public $timestamps = false;
-
 }

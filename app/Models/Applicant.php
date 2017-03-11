@@ -24,6 +24,9 @@ class Applicant extends Model
         'updated_at'
     ];
 
+    protected $dates = [
+        'birthday'
+    ];
 
     public function city()
     {
@@ -34,10 +37,5 @@ class Applicant extends Model
     {
         return $this->hasMany('App\Models\ApplicantAnswers','applicant_id','id');
     }
-
-
-
-
-
 
 }

@@ -9,16 +9,19 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-
     protected $fillable = [
-        'name', 'email', 'password','fullname','department_id','location_id','permission_group_id'
+        'name',
+        'email',
+        'password',
+        'fullname',
+        'department_id',
+        'location_id',
+        'permission_group_id'
     ];
-
 
     protected $hidden = [
         'password', 'remember_token',
     ];
-
 
     public function department()
     {
@@ -34,6 +37,4 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\PermissionsGroups','permission_group_id','id');
     }
-
-
 }

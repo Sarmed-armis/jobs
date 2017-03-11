@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Languages extends Model
 {
-
     protected $table = 'language_name';
 
     protected $fillable = [
@@ -14,7 +13,4 @@ class Languages extends Model
     ];
 
     public $timestamps = false;
-
-
-
 }

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobResponsibilities extends Model
 {
-
     protected $table = 'job_responsibilities';
 
     protected $fillable = [
@@ -14,8 +13,5 @@ class JobResponsibilities extends Model
         'job_id'
     ];
 
-
-
     public $timestamps = false;
-
 }

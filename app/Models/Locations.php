@@ -15,6 +15,5 @@ class Locations extends Model
         'longitude'
     ];
 
-
     public $timestamps = false;
 }

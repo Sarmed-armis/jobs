@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Cities as City;
+use App\Models\Cities as citiesModel;
 
 class CitesSeeder extends Seeder
 {
@@ -12,23 +12,21 @@ class CitesSeeder extends Seeder
      */
     public function run()
     {
-            City::truncate();
+        citiesModel::truncate();
 
-            City::insert(
-                [
-                    [
-                        'name' => 'baghdad'
-                    ],
-                    [
-                        'name' => 'Kut'
-                    ],
-                    [
-                        'name' => 'Basrsh'
-                    ],
-                    [
-                        'name' => 'Hilla'
-                    ],
-                ]
-            );
+        citiesModel::insert([
+            [
+                'name' => 'baghdad'
+            ],
+            [
+                'name' => 'Kut'
+            ],
+            [
+                'name' => 'Basrsh'
+            ],
+            [
+                'name' => 'Hilla'
+            ],
+        ]);
     }
 }
