@@ -9,7 +9,7 @@ class ApplicantAnswers extends Model
     protected $table = 'applicant_answers';
 
     protected $fillable = [
-        'querstion_id',
+        'question_id',
         'answer_id',
         'applicant_id'
     ];
