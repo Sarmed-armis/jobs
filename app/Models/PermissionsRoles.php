@@ -15,8 +15,8 @@ class PermissionsRoles extends Model
 
     public $timestamps = false;
 
-    public function permission()
+    public function roles()
     {
-        return $this->hasOne('App\Models\Permission','id','permission_id');
+        return $this->hasOne('App\Models\Permissions','id','permission_id');
     }
 }
