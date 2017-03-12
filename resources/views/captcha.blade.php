@@ -1,0 +1,1 @@
+{!! app('captcha')->display(); !!}

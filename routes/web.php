@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix'=>'/interface'],function ()
+{
+Route::get('/login','Auth\LoginController@showLoginForm')->name('login')->middleware('notAllowed');
+Route::post('/login','Auth\LoginController@login');
+Route::post('/logout','Auth\LoginController@logout');
 });
+
