@@ -15,7 +15,7 @@ class CreateApplicantAnswersTable extends Migration
     {
         Schema::create('applicant_answers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('querstion_id');
+            $table->integer('question_id');
             $table->integer('answer_id');
             $table->integer('applicant_id');
         });

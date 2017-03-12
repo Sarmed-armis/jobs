@@ -9,7 +9,7 @@ class Languages extends Model
     protected $table = 'languages';
 
     protected $fillable = [
-        'language_name'
+        'name'
     ];
 
     public $timestamps = false;
