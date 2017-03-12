@@ -16,7 +16,7 @@ class CheckIP
     public function handle($request, Closure $next)
     {
         if($request->IP()!=env('AllowedIP')){
-            abort(404);
+            abort(401);
         }
         return $next($request);
     }
