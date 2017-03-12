@@ -75,7 +75,7 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request)
-   {
-    return abort(404);
-   }
+    {
+        return abort(404);
+    }
 }
