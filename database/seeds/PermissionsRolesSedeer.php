@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\PermissionsRoles as PermissionRolesModel;
+//use App\Models\PermissionsRoles as PermissionRolesModel;
 
 class PermissionsRolesSedeer extends Seeder
 {
@@ -12,7 +12,7 @@ class PermissionsRolesSedeer extends Seeder
      */
     public function run()
     {
-        //disabled by Saif
+       
 //        PermissionRolesModel::truncate();
 //
 //        PermissionRolesModel::insert([
