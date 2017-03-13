@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
          $this->call(CitesSeeder::class);
          $this->call(QuestionTypeSeeder::class);
          $this->call(DepartmentSeeder::class);
+         $this->call(PermissionsSeeder::class);
+         $this->call(permissionsGroupsSedeer::class);
+         $this->call(PermissionsRolesSedeer::class);
     }
 }
