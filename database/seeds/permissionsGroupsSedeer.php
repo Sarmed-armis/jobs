@@ -12,7 +12,6 @@ class permissionsGroupsSedeer extends Seeder
      */
     public function run()
     {
-        
 //        PermissionsGroupsModel::truncate();
 //
 //        PermissionsGroupsModel::insert([
