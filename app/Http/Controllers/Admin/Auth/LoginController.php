@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
-
+namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/interface/dashboard';
 
     /**
      * Create a new controller instance.
@@ -36,4 +36,22 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+      public function showLoginForm()
+    {
+        return view('admin.auth.login');
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+    }
+    public function deny(){
+        redirect('/interface/deny');
+    }
+    
 }
