@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\PermissionsGroups as PermissionsGroupsModel;
+//use App\Models\PermissionsGroups as PermissionsGroupsModel;
+
 class permissionsGroupsSedeer extends Seeder
 {
     /**
@@ -11,7 +12,7 @@ class permissionsGroupsSedeer extends Seeder
      */
     public function run()
     {
-        //disabled by Saif
+        
 //        PermissionsGroupsModel::truncate();
 //
 //        PermissionsGroupsModel::insert([
