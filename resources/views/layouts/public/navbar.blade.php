@@ -17,15 +17,9 @@
                      <li><a href="job-list.html">Job list</a></li>
                      <li><a href="details.html">Job Details</a></li>
                      <li><a href="resume.html">Resume</a></li>
-                     <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Pages<span
-                                     class="caret"></span></a>
-<<<<<<< HEAD
-                        <ul class="dropdown-menu">
-                             <li><a href="profile.html">Profile</a></li>
-=======
+                     <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Pages<span  class="caret"></span></a>
                          <ul class="dropdown-menu">
                             <li><a href="profile.html">Profile</a></li>
->>>>>>> resolve-issue20
                              <li><a href="post-resume.html">Post Resume</a></li>
                              <li><a href="post.html">Job Post</a></li>
                              <li><a href="edit-resume.html">Edit Resume</a></li>
@@ -35,11 +29,7 @@
                              <li><a href="delete-account.html">Close Account</a></li>
                              <li><a href="signup.html">Job Signup</a></li>
                              <li><a href="signin.html">Job Signin</a></li>
-<<<<<<< HEAD
-                        </ul>
-=======
                          </ul>
->>>>>>> resolve-issue20
                      </li>
                  </ul>
              </div>
@@ -53,12 +43,9 @@
  
              <a href="post.html" class="btn">Post Your Job</a>
          </div>
-<<<<<<< HEAD
      </div>
  </nav>
  </header> 
-=======
     </div>
  </nav>
- </header> 
->>>>>>> resolve-issue20
+ </header>

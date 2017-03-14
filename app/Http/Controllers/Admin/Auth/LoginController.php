@@ -51,7 +51,7 @@ class LoginController extends Controller
         ]);
     }
     public function deny(){
-        redirect('/interface/deny');
+        redirect('/deny');
     }
     
 }

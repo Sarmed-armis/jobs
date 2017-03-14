@@ -11,8 +11,5 @@ Route::group(['prefix'=>'/interface','middleware'=>'AllowedIP'],function ()
   Route::get('/login','Admin\Auth\LoginController@showLoginForm');
   Route::post('/login','Admin\Auth\LoginController@login');
   Route::post('/logout','Admin\Auth\LoginController@logout');
-  Route::get('/deny','Admin\Auth\LoginController@deny');
 });
-Route::get('test',function(){
-	return view('admin.home');
-});
+Route::get('deny','Admin\Auth\LoginController@deny');
