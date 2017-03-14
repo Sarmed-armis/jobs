@@ -15,7 +15,7 @@ class AllowedIP
      */
     public function handle($request, Closure $next)
     {
-        if($request->IP()!=env('AllowedIP')){
+        if($request->IP()!=env('ALLOWED_IP')){
             abort(401);
         }
         return $next($request);
