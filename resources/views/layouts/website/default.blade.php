@@ -24,11 +24,11 @@
     @yield('css')
 </head>
 <body>
-@include('layouts.public.navbar')
+@include('layouts.website.navbar')
 
 @yield('content')
 
-@include('layouts.public.footer')
+@include('layouts.website.footer')
 <script src="{{url('website/js/jquery.min.js')}}"></script>
 <script src="{{url('website/js/bootstrap.min.js')}}"></script>
 <script src="{{url('website/js/price-range.js')}}"></script>
