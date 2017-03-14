@@ -17,7 +17,7 @@ class CreateJobsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('summary');
-            $table->string('job_image');
+            $table->string('image');
             $table->smallInteger('number_positions')->unsigned();
             $table->integer('location_id')->unsigned();
             $table->integer('department_id');
