@@ -9,7 +9,8 @@ class Departments extends Model
     protected $table = 'departments';
 
     protected $fillable = [
-        'name'
+        'name',
+        'image'
     ];
 
     public $timestamps = false;

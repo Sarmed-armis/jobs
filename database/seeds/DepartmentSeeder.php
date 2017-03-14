@@ -16,58 +16,76 @@ class DepartmentSeeder extends Seeder
 
         departmentsModels::insert([
             [
-                'name' => 'Research and development'
+                'name' => 'Research and development',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/6.png'
             ],
             [
-                'name' => 'Human resources'
+                'name' => 'Human resources',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/5.png'
             ],
             [
-                'name' => 'Finance'
+                'name' => 'Finance',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Management'
+                'name' => 'Management',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/4.png'
             ],
             [
-                'name' => 'Marketing'
+                'name' => 'Marketing',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/10.png'
             ],
             [
-                'name' => 'Customer service'
+                'name' => 'Customer service',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/11.png'
             ],
             [
-                'name' => 'Sales'
+                'name' => 'Sales',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Transmission and Wireless'
+                'name' => 'Transmission and Wireless',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Maintenance'
+                'name' => 'Maintenance',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Secretarial'
+                'name' => 'Secretarial',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Call Centre'
+                'name' => 'Call Centre',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Network Operation Center'
+                'name' => 'Network Operation Center',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Drivers'
+                'name' => 'Drivers',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Fiber'
+                'name' => 'Fiber',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Services'
+                'name' => 'Services',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Storekeepers'
+                'name' => 'Storekeepers',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Microwaves'
+                'name' => 'Microwaves',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ],
             [
-                'name' => 'Followup'
+                'name' => 'Followup',
+                'image' => 'http://demo.themeregion.com/jobs-updated/images/icon/1.png'
             ]
         ]);
     }

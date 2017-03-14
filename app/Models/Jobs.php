@@ -19,6 +19,7 @@ class Jobs extends Model
         'salary',
         'min_age',
         'max_age',
+        'job_image',
         'experience',
         'created_at',
         'updated_at'
