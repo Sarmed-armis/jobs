@@ -13,3 +13,6 @@ Route::group(['prefix'=>'/interface','middleware'=>'AllowedIP'],function ()
   Route::post('/logout','Admin\Auth\LoginController@logout');
   Route::get('/deny','Admin\Auth\LoginController@deny');
 });
+Route::get('test',function(){
+	return view('admin.home');
+});
