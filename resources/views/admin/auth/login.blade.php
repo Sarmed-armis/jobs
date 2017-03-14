@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
-        <link rel="shortcut icon" href="{{url('assets/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{url('admin/assets/images/favicon.ico')}}">
         <title>Login</title>
-        <link href="{{url('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{url('admin/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-        <script src="{{url('assets/js/modernizr.min.js')}}"></script>
+        <script src="{{ url('admin/assets/js/modernizr.min.js')}}"></script>
     </head>
 
     <body>
@@ -32,7 +32,7 @@
                         <div class="col-xs-12 text-xs-center">
                             <h6 class="text-muted text-uppercase m-b-0 m-t-0">Sign In</h6>
                         </div>
-                        <form class="form-horizontal m-t-20" action="{{ route('login') }}" method="POST">
+                        <form class="form-horizontal m-t-20" action="{{ action('interface/login') }}" method="POST">
                           {{ csrf_field() }}
                             <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <div class="col-xs-12">
@@ -88,14 +88,14 @@
         <script>
             var resizefunc = [];
         </script>
-        <script src="{{url('assets/js/jquery.min.js')}}"></script>
-        <script src="{{url('assets/js/tether.min.js')}}"></script><!-- Tether for Bootstrap -->
-        <script src="{{url('assets/js/bootstrap.min.js')}}"></script>
-        <script src="{{url('assets/js/waves.js')}}"></script>
-        <script src="{{url('assets/js/jquery.nicescroll.js')}}"></script>
-        <script src="{{url('assets/plugins/switchery/switchery.min.js')}}"></script>
-        <script src="{{url('assets/js/jquery.core.js')}}"></script>
-        <script src="{{url('assets/js/jquery.app.js')}}"></script>
+        <script src="{{url('Admin/assets/js/jquery.min.js')}}"></script>
+        <script src="{{url('Admin/assets/js/tether.min.js')}}"></script><!-- Tether for Bootstrap -->
+        <script src="{{url('Admin/assets/js/bootstrap.min.js')}}"></script>
+        <script src="{{url('Admin/assets/js/waves.js')}}"></script>
+        <script src="{{url('Admin/assets/js/jquery.nicescroll.js')}}"></script>
+        <script src="{{url('Admin/assets/plugins/switchery/switchery.min.js')}}"></script>
+        <script src="{{url('Admin/assets/js/jquery.core.js')}}"></script>
+        <script src="{{url('Admin/assets/js/jquery.app.js')}}"></script>
 
     </body>
 </html>

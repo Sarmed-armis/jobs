@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckIP
+class AllowedIP
 {
     /**
      * Handle an incoming request.
