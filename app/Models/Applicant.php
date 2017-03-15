@@ -30,12 +30,12 @@ class Applicant extends Model
 
     public function city()
     {
-        return $this->hasOne('App\Models\Cities','city_id','id');
+        return $this->hasOne('App\Models\Cities','id','city_id');
     }
 
     public function answers()
     {
-        return $this->hasMany('App\Models\ApplicantAnswers','applicant_id','id');
+        return $this->hasMany('App\Models\ApplicantAnswers','id','applicant_id');
     }
 
 }

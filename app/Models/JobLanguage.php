@@ -12,6 +12,10 @@ class JobLanguage extends Model
         'language_id',
         'job_id',
     ];
+    public function language()
+    {
+        return $this->hasMany('App\Models\Languages','id','language_id');
+    }
 
     public $timestamps = false;
 }
