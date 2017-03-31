@@ -18,7 +18,8 @@ class User extends Authenticatable
         'fullname',
         'department_id',
         'location_id',
-        'permission_group_id'
+        'permission_group_id',
+        'status',
     ];
 
     protected $hidden = [
@@ -27,18 +28,20 @@ class User extends Authenticatable
 
     public function department()
     {
-        return $this->hasOne('App\Models\Departments','department_id','id');
+        return $this->hasOne('App\Models\Departments','id','department_id');
     }
 
     public function location()
     {
-        return $this->hasOne('App\Models\Locations','location_id','id');
+        return $this->hasOne('App\Models\Locations','id','location_id');
     }
 
     public function group()
     {
         return $this->hasOne('App\Models\PermissionsGroups','id','permission_group_id');
     }
+
+
 
     /**
      * This function check user if has permission

@@ -19,4 +19,9 @@ class PermissionsRoles extends Model
     {
         return $this->hasOne('App\Models\Permissions','id','permission_id');
     }
+
+    public function group()
+    {
+        return $this->hasOne('App\Models\PermissionsGroups','id','group_id');
+    }
 }

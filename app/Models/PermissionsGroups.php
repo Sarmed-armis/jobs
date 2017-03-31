@@ -19,4 +19,5 @@ class PermissionsGroups extends Model
     {
         return $this->hasMany('App\Models\PermissionsRoles', 'group_id', 'id');
     }
+
 }

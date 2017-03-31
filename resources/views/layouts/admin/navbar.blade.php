@@ -11,7 +11,7 @@
                    <div class="menu-extras">
 
                         <ul class="nav navbar-nav pull-right">
-
+<!--
                             <li class="nav-item">
                                 <a class="navbar-toggle">
                                     <div class="lines">
@@ -84,7 +84,7 @@
 
                                 </div>
                             </li>
-
+!-->
                         </ul>
 
                     </div> 
@@ -92,6 +92,8 @@
 
                 </div>
             </div>
+
+
             <div class="navbar-custom">
                 <div class="container">
                     <div id="navigation">
@@ -106,7 +108,11 @@
                              <a href="interface/application"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Applications </span></a>
                             </li>
                             <li>
-                             <a href="interface/users"><i class="zmdi zmdi-account"></i> <span> Users </span></a>
+                             <a href="/interface/user"><i class="zmdi zmdi-account"></i> <span> Users </span></a>
+                            </li>
+
+                            <li>
+                                <a href="/interface/group"><i class="zmdi zmdi-group"></i> <span> Groups </span></a>
                             </li>
                             <li>
                              <a href="interface/settings"><i class="zmdi zmdi-settings"></i> <span> Settings </span></a>

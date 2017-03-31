@@ -16,4 +16,6 @@ class Locations extends Model
     ];
 
     public $timestamps = false;
+
+
 }
