@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers\Admin\Members;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Members\User\Add;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\Departments;
@@ -12,19 +12,14 @@ use  App\Models\PermissionsRoles;
 use App\Models\permissions;
 use Illuminate\Routing\Redirector;
 
-
 class UserController extends Controller
 {
-
     public function __construct(Redirector $redirect)
     {
         try {
-
             $this->authorize('user.access');
         } catch (Exception  $e) {
-
             return $redirect->to('deny')->send();
-
         }
     }
 
@@ -40,30 +35,35 @@ class UserController extends Controller
 
     public function index()
     {
-
         try {
-
             $this->authorize('user.show');
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'erorr'
+            ], 404);
+        }
+
             $permissions = permissions::all();
+
             $departments = Departments::all();
+
             $locations = Locations::all();
+
             $permissionsGroups = PermissionsGroups::all();
+
             $users = user::paginate(5);
+
             $permissionsRoles = PermissionsRoles::all();
-            return view('admin.user.index', array(
+
+            return view('admin.members.user.index', array(
                     'departments' => $departments,
                     'Locations' => $locations,
                     'PermissionsGroups' => $permissionsGroups,
                     'users' => $users,
                     'PermissionsRoles' => $permissionsRoles,
                     'permissions' => $permissions
-
             ));
-        } catch (Exception $e) {
-            return response()->json([
-                'status' => 'erorr'
-            ], 404);
-        }
+
     }
 
     /**
@@ -72,17 +72,16 @@ class UserController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      **/
 
-    public function add(Request $request)
+    public function add(Add $request)
     {
         try {
-
             $this->authorize('user.store');
-            $this->validate($request, [
-                'name' => 'required|max:255',
-                'fullname' => 'required',
-                'email' => 'required|email|unique:users',
-                'Password' => 'required|min:6',
-            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'erorr'
+            ], 500);
+        }
+
 
             User::create([
                 'name' => $request->input('name'),
@@ -96,12 +95,6 @@ class UserController extends Controller
             ]);
 
             return 'success';
-        } catch (Exception $e) {
-            return response()->json([
-                'status' => 'erorr'
-            ], 500);
-        }
-
     }
 
     /**
@@ -112,21 +105,25 @@ class UserController extends Controller
     public function block(Request $request)
     {
         try {
-
             $this->authorize('user.edit');
-            $user = User::find($request->input('id'));
-            if ($user->status == 1) {
-                $user->status = 0;
-            } else {
-                $user->status = 1;
-            }
-            $user->save();
-            return 'success';
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'erorr'
             ], 404);
         }
+            $user = User::find($request->input('id'));
+
+            if ($user->status == 1) {
+
+                $user->status = 0;
+            } else {
+
+                $user->status = 1;
+            }
+
+            $user->save();
+
+            return 'success';
     }
 
     /**
@@ -138,13 +135,17 @@ class UserController extends Controller
     {
         try {
             $this->authorize('user.delete');
-            $user = User::find($request->input('id'));
-            $user->delete();
-            return 'success';
-
         } catch (Exception $e) {
-            return response()->json(['status' => 'erorr'], 404);
+            return response()->json([
+                'status' => 'erorr'
+            ], 404);
         }
+
+            $user = User::find($request->input('id'));
+
+            $user->delete();
+
+            return 'success';
     }
 
     /**
@@ -156,15 +157,18 @@ class UserController extends Controller
     {
         try {
             $this->authorize('user.edit');
-            $user = User::find($request->input('id'));
-            $user->permission_group_id = $request->input('Permestions');
-            $user->save();
-            return $request->all();
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'erorr'
             ], 404);
         }
+            $user = User::find($request->input('id'));
+
+            $user->permission_group_id = $request->input('Permestions');
+
+            $user->save();
+
+            return 'success';
 
 
     }

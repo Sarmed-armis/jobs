@@ -1,13 +1,13 @@
 <?php
 namespace App\Http\Controllers\Admin\Members;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Members\Group\Add;
 use Illuminate\Http\Request;
 use App\Models\PermissionsGroups as permissionGroupModel;
 use App\Models\PermissionsRoles as permissionsRolesModel;
 use App\Models\Permissions as permissionsModel;
 use Exception;
 use Illuminate\Routing\Redirector;
-
 
 class GroupController extends Controller
 {
@@ -33,19 +33,18 @@ class GroupController extends Controller
     {
         try {
             $this->authorize('group.show');
+        } catch (Exception $e) {
+            return response()->json(['status' => 'erorr'], 404);
+        }
 
             $permissionGroupModel = permissionGroupModel::paginate(5);
 
             $permissionsModel = permissionsModel::all();
 
-            return view('admin.group.index', array(
+            return view('admin.members.group.index', array(
                 'permissionGroupModel' => $permissionGroupModel,
                 'permissionsModel' => $permissionsModel
             ));
-        } catch (Exception $e) {
-
-            return response()->json(['status' => 'erorr'], 404);
-        }
     }
 
     /**
@@ -58,6 +57,7 @@ class GroupController extends Controller
     {
 
         $permissionsRoles = permissionsRolesModel::where('group_id', $request->input('id'))->get();
+
         $permissionsRoleArray = Array();
 
         foreach ($permissionsRoles as $permissionsRole) {
@@ -78,12 +78,16 @@ class GroupController extends Controller
 
     public function getOldPermission(Request $request)
     {
-
         try {
-
             $this->authorize('group.edit');
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'erorr'
+            ], 404);
+        }
 
             $permissionsRoles = permissionsRolesModel::where('group_id', $request->input('id'))->get();
+
             $permissionsRoleArray = Array();
 
             foreach ($permissionsRoles as $permissionsRole) {
@@ -93,12 +97,8 @@ class GroupController extends Controller
             }
 
             return $permissionsRoleArray;
-        } catch (Exception $e) {
-            return response()->json([
-                'status' => 'erorr'
-            ], 404);
-        }
-    }
+
+}
 
     /**
      * this is function for add new group
@@ -106,26 +106,33 @@ class GroupController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      **/
 
-    public function add(Request $request)
+    public function add(Add $request)
     {
-
-
         try {
-            $this->authorize('group.store');
 
-            $this->validate($request, [
-                'permissions' => 'required',
-                'groupname' => 'required',
-                'description' => 'required|max:255',
-            ]);
+            $this->authorize('group.store');
+        } catch (Exception $e) {
+
+            return response()->json([
+                'status' => 'erorr'
+            ], 404);
+
+        }
 
             $permissionsRoles = new permissionsRolesModel;
+
             $setPermissions = [];
+
             $permissions = $request->input('permissions');
+
             $group = new permissionGroupModel();
+
             $group->name = $request->input('groupname');
+
             $group->description = $request->input('description');
+
             $group->save();
+
             $group->id;
 
             foreach ($permissions as $permission) {
@@ -141,13 +148,7 @@ class GroupController extends Controller
             $permissionsRoles->insert($setPermissions);
 
             return redirect()->back();
-        } catch (Exception $e) {
 
-            return response()->json([
-                'status' => 'erorr'
-            ], 404);
-
-        }
     }
 
     /**
@@ -158,15 +159,24 @@ class GroupController extends Controller
 
     public function edit(Request $request)
     {
-
         try {
             $this->authorize('group.edit');
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'erorr'
+            ], 404);
+        }
 
             if ($request->input('groupname') != null) {
+
                 $PermissionsGroups = permissionGroupModel::find($request->input('id'));
+
                 $PermissionsGroups->name = $request->input('groupname');
+
                 $PermissionsGroups->description = $request->input('description');
+
                 $PermissionsGroups->save();
+
 
                 return 'done';
 
@@ -176,11 +186,6 @@ class GroupController extends Controller
 
                 return $PermissionsGroups;
             }
-        } catch (Exception $e) {
-
-            return response()->json(['status' => 'erorr'], 404);
-
-        }
 
     }
 
@@ -193,27 +198,28 @@ class GroupController extends Controller
     public function changePermission(Request $request)
     {
         try {
-
             $this->authorize('group.edit');
+        } catch (Exception $e) {
+            return response()->json(['status' => 'erorr'], 404);
+        }
+
             $id = $request->input('id');
+
             permissionsRolesModel::where('group_id', $id)->delete();
+
             $editPermissions = $request->input('permissiions');
+
             foreach ($editPermissions as $editPermission) {
 
                 $setPermissions[] = [
                     'group_id' => $id,
                     'permission_id' => $editPermission
-
                 ];
-
             }
             permissionsRolesModel::insert($setPermissions);
 
             return redirect()->back();
-        } catch (Exception $e) {
-            return response()->json(['status' => 'erorr'], 404);
 
-        }
     }
 
 }
