@@ -21,7 +21,8 @@ class Jobs extends Model
         'max_age',
         'experience',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'image'
     ];
 
     protected $dates = [

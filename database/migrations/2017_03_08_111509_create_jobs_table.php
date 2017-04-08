@@ -26,6 +26,7 @@ class CreateJobsTable extends Migration
             $table->smallInteger('min_age')->unsigned();
             $table->smallInteger('max_age')->unsigned();
             $table->string('experience');
+            $table->string('image');
             $table->timestamps();
         });
     }

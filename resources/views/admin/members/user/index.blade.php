@@ -27,30 +27,36 @@
                                     <h4 class="modal-title">Add New User</h4>
                                 </div>
                                 <div class="modal-body">
+                                    <ul  id="error" class="alert-danger">
+
+                                    </ul>
                                     <form>
                                         <fieldset class="form-group">
                                             <label for="exampleInputEmail1">User name</label>
-                                            <input type="text" class="form-control" id="user_name" placeholder="Enter Name">
+                                            <input type="text" class="form-control" id="user_name"   placeholder="Enter Name">
                                         </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="exampleInputEmail1">User Full Name</label>
-                                            <input type="text" class="form-control" id="Full_Name" placeholder="Enter Full name">
-                                        </fieldset>
+
 
                                         <fieldset class="form-group">
                                             <label for="exampleInputEmail1">User Email</label>
-                                            <input type="email" class="form-control" id="Email" placeholder="Enter Email">
+                                            <input type="email" class="form-control" id="Email" required="required" placeholder="Enter Email">
                                         </fieldset>
 
 
                                         <fieldset class="form-group">
                                             <label for="exampleInputPassword1">Password</label>
-                                            <input type="password" class="form-control" id="Password" placeholder="Password">
+                                            <input type="password" class="form-control" id="Password" required="required" placeholder="Password">
+                                        </fieldset>
+
+                                        <fieldset class="form-group">
+                                            <label for="exampleInputPassword1">Confirm Password</label>
+                                            <input type="password" class="form-control" id="password_confirmation"  name="password_confirmation"  required="required" placeholder="Password">
                                         </fieldset>
 
                                         <fieldset class="form-group">
                                             <label for="exampleSelect1">choose Department</label>
-                                            <select class="form-control" id="Department">
+                                            <select class="form-control" id="Department" required="required" >
+                                                <option value="">Select one</option>
                                                 @foreach($departments as $department)
                                                     <option value="{{$department->id}}">{{$department->name}}</option>
                                                 @endforeach
@@ -60,7 +66,8 @@
 
                                         <fieldset class="form-group">
                                             <label for="exampleSelect1">choose Locations</label>
-                                            <select class="form-control" id="Locations">
+                                            <select class="form-control" id="Locations" required="required">
+                                                <option value="" >Select one</option>
                                                 @foreach($Locations as $Location)
                                                     <option value="{{$Location->id}}">{{$Location->name}}</option>
                                                 @endforeach
@@ -71,17 +78,20 @@
                                         <input type="hidden" id="token" value="{{ csrf_token() }}">
                                         <fieldset class="form-group">
                                             <label for="exampleSelect1">Choose Group</label>
-                                            <select class="form-control" id="Permestion_group" name="Permestion_group">
+                                            <select class="form-control" id="Permestion_group" name="Permestion_group" required="required">
+                                                <option value="">Select one</option>
                                                 @foreach($PermissionsGroups as $PermissionsGroup)
                                                     <option value="{{$PermissionsGroup->id}}">{{$PermissionsGroup->name}}</option>
                                                 @endforeach
                                             </select>
                                         </fieldset>
-                                        <button id="Add_user" class="btn btn-primary">Submit</button>
+
                                     </form>
                                 </div>
                                 <div class="modal-footer">
+
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button id="Add_user" class="btn btn-primary pull-left">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -94,14 +104,14 @@
                                         <thead>
                                         <tr>
                                             <th>name</th>
-                                            <th>fullname</th>
                                             <th>department</th>
                                             <th>location</th>
                                             <th>group</th>
                                             <th>status</th>
-                                            <th></th>
                                             @can('user.edit')
-                                            <th>Controller</th>
+                                            <th>block</th>
+                                           <th>delete</th>
+                                            <th>change group</th>
                                             @endcan
                                             <th></th>
                                         </tr>
@@ -110,34 +120,27 @@
                                         @foreach($users as $user)
                                             <tr>
                                                 <td>{{$user->name}}</td>
-                                                <td>{{$user->fullname}}</td>
                                                 <td>{{$user->department->name}}</td>
                                                 <td>{{$user->location->name}}</td>
                                                 <td>{{$user->group->name}}</td>
 
                                                 @if($user->status ==0)
-                                                    <td>Unblock</td>
+                                                    <td><span class="label label-success">Unblock</span></td>
                                                 @else
-                                                    <td class="red">Blocked</td>
+                                                    <td><span class="label label-danger">Block</span></td>
                                                 @endif
                                                 @can('user.edit')
                                                 <td><input type="hidden" id="token" value="{{ csrf_token() }}">
                                                     <button type="button" id="{{$user->id}}"
-                                                            class="btn btn-dark waves-effect waves-light Block">
-                                                        @if($user->status ==0)
-                                                            Blocked
-                                                        @else
-                                                            Unblock
-                                                        @endif
-
+                                                            class="btn btn-dark waves-effect waves-light Block  fa fa-ban ">
                                                     </button>
                                                 </td>
                                                 <td>
                                                     <input type="hidden" id="token" value="{{ csrf_token() }}">
-                                                    <button type="button" id="{{$user->id}}"class="btn btn-danger waves-effect waves-light  Delete">Delete</button>
+                                                    <button type="button" id="{{$user->id}}"class="btn btn-danger waves-effect waves-light  Delete fa fa-remove"></button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning waves-effect waves-light check" id="{{$user->id}}">Change Group</button>
+                                                    <button type="button" class="btn btn-primary waves-effect waves-light check fa fa-edit" id="{{$user->id}}"></button>
                                                 </td>
                                                 @endcan
                                             </tr>
@@ -145,7 +148,7 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-                                    {{$users->links()}}
+                                    <div class="text-center">{{$users->links()}}</div>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +157,7 @@
             </div>
         </div>
     </div>
-    </div>
+
 
     <div class="modal fade" id="DeleteModal" role="dialog">
         <div class="modal-dialog">
@@ -173,8 +176,33 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="BlockModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Alert</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="lead">Are you suer you want change user status!!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="BlockSure" class="btn btn-danger">Change</button>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
+
+
+
+
+
+
+
+
 
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -187,8 +215,10 @@
                     <div class="p-20">
                         <form class="form-horizontal " action="#">
                             <div class="form-group">
+
                                 <label>Chose New Group</label>
                                 <select class="form-control" id="Permestions" name="Permestion_group">
+
                                     @foreach($PermissionsGroups as $PermissionsGroup)
                         <option value="{{$PermissionsGroup->id}}">{{$PermissionsGroup->name}}</option>
                                     @endforeach
@@ -204,47 +234,32 @@
                 </div>
             </div>
         </div>
+    </div>
 
 
         @endsection
         @section('js')
             <script>
-                $(document).ready(function () {
-                    /*
-                     * this is for  user section
-                     * add new
-                     * delete
-                     * block
-                     * change grup
-                     * add new grup
-                     *  edit grup change permestions
-                     *
-                     * */
 
-                });
                 $('#Add_user').on('click', function (event) {
                     event.preventDefault();
                     var Name = $('#user_name').val();
-                    var FullNmae = $('#Full_Name').val();
                     var Email = $('#Email').val();
                     var Password = $('#Password').val();
+                    var password_confirmation=$('#password_confirmation').val();
                     var Department = $('#Department').val();
                     var Location = $('#Locations').val();
                     var token = $('#token').val();
                     var Permestion_group = $('#Permestion_group').val();
-                    if (Name == '' || FullNmae == '' || Email == '' || Department == '' || Location == '' || Permestion_group == '') {
-                        sweetAlert("Oops...", "Something went wrong!", "error");
-                    }
-                    else {
 
                         $.ajax({
                             type: "POST",
                             url: 'user/add',
                             data: {
                                 name: Name,
-                                fullname: FullNmae,
                                 email: Email,
                                 password: Password,
+                                password_confirmation: password_confirmation,
                                 department: Department,
                                 location: Location,
                                 permestion_group: Permestion_group,
@@ -255,10 +270,14 @@
                                 location.reload();
                             },
                             error: function (msg) {
-                                sweetAlert("Oops...", "Something went wrong!", "error");
+                                var erroes='';
+                               for(datas in msg.responseJSON){
+                                   erroes+=msg.responseJSON[datas]+'</br>';
+                               }
+                                $('#error').show().html(erroes);
+
                             }
                         });
-                    }
                 });
 
                 $('body').on('click', '.check', function () {
@@ -270,7 +289,7 @@
                         $.ajax({
                             type: "POST",
                             url: 'user/change',
-                            data: {id: id, Permestions: group, _token: token},
+                            data: {id: id, permestion_group: group, _token: token},
                             success: function (msg) {
                                 location.reload();
                             },
@@ -280,38 +299,42 @@
                     });
                 });
                 $('body').on('click', '.Block', function () {
+
                     var id = $(this).attr('id');
                     var token = $('#token').val();
-                    $.ajax({
-                        type: "POST",
-                        url: 'user/block',
-                        data: {id: id, _token: token},
-                        success: function (msg) {
-                            Command: toastr["success"]("Hey!! you have been change user Stutas!!!", "User Status!")
-                            toastr.options = {
-                                "closeButton": false,
-                                "debug": false,
-                                "newestOnTop": true,
-                                "progressBar": true,
-                                "positionClass": "toast-top-center",
-                                "preventDuplicates": false,
-                                "onclick": null,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "1000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                            }
-                            setTimeout(function () {
-                                window.location.reload();
-                            }, 1000);
-                        },
-                        error: function (msg) {
+                    $('#BlockModal').modal('show');
+                    $('#BlockSure').on('click', function (e) {
+                        $.ajax({
+                            type: "POST",
+                            url: 'user/block',
+                            data: {id: id, _token: token},
+                            success: function (msg) {
+                                Command: toastr["success"]("Hey!! you have been change user Stutas!!!", "User Status!")
+                                toastr.options = {
+                                    "closeButton": false,
+                                    "debug": false,
+                                    "newestOnTop": true,
+                                    "progressBar": true,
+                                    "positionClass": "toast-top-center",
+                                    "preventDuplicates": false,
+                                    "onclick": null,
+                                    "showDuration": "300",
+                                    "hideDuration": "1000",
+                                    "timeOut": "1000",
+                                    "extendedTimeOut": "1000",
+                                    "showEasing": "swing",
+                                    "hideEasing": "linear",
+                                    "showMethod": "fadeIn",
+                                    "hideMethod": "fadeOut"
+                                }
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 1000);
+                            },
+                            error: function (msg) {
 
-                        }
+                            }
+                        });
                     });
                 });
 
@@ -349,7 +372,8 @@
                                 $('#' + id).parents('tr').remove();
                             },
                             error: function (msg) {
-                                console.log(msg.responseText);
+                               // console.log(msg.responseText);
+
                             }
                         });
                     });

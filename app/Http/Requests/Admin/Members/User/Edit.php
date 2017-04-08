@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin\Members\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Add extends FormRequest
+class Edit extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,8 @@ class Add extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'department'=>'required|numeric|exists:departments,id',
-            'location'=>'required|numeric|exists:locations,id',
-            'permestion_group'=>'required|numeric|exists:permissions_groups,id'
+            'id'=>'required|numeric|exists:users,id',
+            'permestion_group'=>'required'
         ];
     }
-
-
 }

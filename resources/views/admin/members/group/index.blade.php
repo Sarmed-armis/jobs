@@ -60,7 +60,7 @@
                                 </tbody>
 
                             </table>
-                            {{$permissionGroupModel->links()}}
+                            <div class="text-center">{{$permissionGroupModel->links()}}</div>
                         </div>
                     </div>
                 </div>
@@ -73,11 +73,7 @@
                             <div class="modal-body">
                                 <div class="lead">
                                     <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Description of permission group</th>
-                                        </tr>
-                                        </thead>
+
                                         <tbody id="showDetails">
                                         </tbody>
                                     </table>
@@ -130,7 +126,7 @@
                             </div>
                             <div class="form-group text-right m-b-0">
                                 <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
-                                <button type="reset" class="btn btn-secondary waves-effect m-l-5">Clear</button>
+
                             </div>
                         </form>
                     </div>
@@ -150,7 +146,7 @@
                     <h4 class="modal-title">Edit Group</h4>
                 </div>
                 <div class="modal-body">
-
+<div id="error" class="alert-danger"></div>
                     <form data-parsley-validate novalidate>
                         <div class="form-group">
                             <label for="userName">Group Name<span class="text-danger">*</span></label>
@@ -162,12 +158,11 @@
                             <label for="userName">description<span class="text-danger">*</span></label>
                             <input type="text" parsley-trigger="change" required
                                    placeholder="description" class="form-control" name="description" id="description">
-
                         </div>
 
                         <div class="form-group text-right m-b-0">
 
-                            <button type="reset" class="btn btn-secondary waves-effect m-l-5">Clear</button>
+
                         </div>
 
                     </form>
@@ -181,7 +176,7 @@
         </div>
     </div>
 
-
+    <form action="{{action('Admin\Members\GroupController@changePermission')}}" method="post" data-parsley-validate novalidate>
     <div class="modal fade" id="changePermissionModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -191,15 +186,12 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="{{action('Admin\Members\GroupController@changePermission')}}" method="post" data-parsley-validate novalidate>
-
                         {{ csrf_field() }}
                         <label>Check Permission</label>
                         <div class="form-group">
                             <input type="hidden" name="id" id="checkid">
                             <div>
                                 @foreach($permissionsModel as $premissions)
-
                                     <div class="checkbox checkbox-success">
                                         <input id="checkbox{{$premissions->id}}"  name="permissiions[]" value="{{$premissions->id}}"
                                                type="checkbox"
@@ -210,18 +202,18 @@
                                 @endforeach
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                    </form>
-
                 </div>
                 <div class="modal-footer">
 
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+
                 </div>
+
             </div>
         </div>
     </div>
-
+    </form>
 @endsection
 @section('js')
     <script>
@@ -278,7 +270,7 @@
                         var token = $('#token').val();
                         $.ajax({
                             type: "POST",
-                            url: 'group/edit',
+                            url: 'group/store',
 
                             data: {
                                 id: msg.id,
@@ -313,7 +305,13 @@
 
                             },
                             error: function (msg) {
-                                console.log(msg);
+                                var erroes='';
+                                for(datas in msg.responseJSON){
+                                    erroes+=msg.responseJSON[datas]+'</br>';
+                                }
+                                console.log(erroes);
+                                $('#error').show().html(erroes);
+
                             }
                         });
                     });

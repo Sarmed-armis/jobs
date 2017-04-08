@@ -2,6 +2,8 @@
 namespace App\Http\Controllers\Admin\Members;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Members\User\Add;
+use App\Http\Requests\Admin\Members\User\Delete;
+use App\Http\Requests\Admin\Members\User\Edit;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\Departments;
@@ -51,7 +53,7 @@ class UserController extends Controller
 
             $permissionsGroups = PermissionsGroups::all();
 
-            $users = user::paginate(5);
+            $users = user::orderBy('id', 'desc')->paginate(5);
 
             $permissionsRoles = PermissionsRoles::all();
 
@@ -85,7 +87,6 @@ class UserController extends Controller
 
             User::create([
                 'name' => $request->input('name'),
-                'fullname' => $request->input('fullname'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
                 'status' => 0,
@@ -131,7 +132,7 @@ class UserController extends Controller
      * @param  $request that handel id of user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      **/
-    public function delete(Request $request)
+    public function delete(Delete $request)
     {
         try {
             $this->authorize('user.delete');
@@ -153,7 +154,7 @@ class UserController extends Controller
      * @param  $request that handel id of user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      **/
-    public function changeGroup(Request $request)
+    public function changeGroup(Edit $request)
     {
         try {
             $this->authorize('user.edit');
@@ -164,7 +165,7 @@ class UserController extends Controller
         }
             $user = User::find($request->input('id'));
 
-            $user->permission_group_id = $request->input('Permestions');
+            $user->permission_group_id = $request->input('permestion_group');
 
             $user->save();
 

@@ -7,7 +7,7 @@
 |
 */
 
-//Auth::loginUsingId(28);
+Auth::loginUsingId(28);
 
 Route::group(['prefix' => '/interface', 'middleware' => 'AllowedIP'], function () {
     Route::get('/login', 'Admin\Auth\LoginController@showLoginForm');
@@ -22,9 +22,17 @@ Route::group(['prefix' => '/interface', 'middleware' => 'AllowedIP'], function (
     Route::post('group/add', 'Admin\Members\GroupController@add');
     Route::get('group', 'Admin\Members\GroupController@index');
     Route::post('group/edit', 'Admin\Members\GroupController@edit');
+    Route::post('group/store', 'Admin\Members\GroupController@storeEdit');
     Route::post('group/show', 'Admin\Members\GroupController@show');
     Route::post('group/getOldPermission', 'Admin\Members\GroupController@getOldPermission');
     Route::post('group/change', 'Admin\Members\GroupController@changePermission');
+    Route::get('jobs','Admin\Jobs\JobsController@index');
+    Route::get('jobs/show','Admin\Jobs\JobsController@show');
+    Route::post('jobs/add','Admin\Jobs\JobsController@add');
+    Route::post('jobs/details','Admin\Jobs\JobsController@details');
+
+
+
 });
 Route::get('deny', 'Admin\Auth\LoginController@deny');
 

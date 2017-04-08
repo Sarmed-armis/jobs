@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin\Members;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Members\Group\Add;
+use App\Http\Requests\Admin\Members\Group\Edit;
 use Illuminate\Http\Request;
 use App\Models\PermissionsGroups as permissionGroupModel;
 use App\Models\PermissionsRoles as permissionsRolesModel;
@@ -140,9 +141,7 @@ class GroupController extends Controller
                 $setPermissions[] = [
                     'group_id' => $group->id,
                     'permission_id' => $permission
-
                 ];
-
 
             }
             $permissionsRoles->insert($setPermissions);
@@ -167,28 +166,23 @@ class GroupController extends Controller
             ], 404);
         }
 
-            if ($request->input('groupname') != null) {
-
-                $PermissionsGroups = permissionGroupModel::find($request->input('id'));
-
-                $PermissionsGroups->name = $request->input('groupname');
-
-                $PermissionsGroups->description = $request->input('description');
-
-                $PermissionsGroups->save();
-
-
-                return 'done';
-
-            } else {
-
                 $PermissionsGroups = permissionGroupModel::find($request->input('id'));
 
                 return $PermissionsGroups;
             }
 
-    }
 
+
+    public function storeEdit(Edit $request){
+        $PermissionsGroups = permissionGroupModel::find($request->input('id'));
+
+        $PermissionsGroups->name = $request->input('groupname');
+
+        $PermissionsGroups->description = $request->input('description');
+
+        $PermissionsGroups->save();
+
+    }
     /**
      * this is function for change permissions of the selected group
      * @param  $request that handel the group_id

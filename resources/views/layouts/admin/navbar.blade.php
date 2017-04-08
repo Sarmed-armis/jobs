@@ -101,22 +101,37 @@
                             <li>
                              <a href="interface/dashboard"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                             </li>
-                            <li>
-                             <a href="interface/jobs"><i class="zmdi zmdi-case"></i> <span> Jobs </span> </a>
-                            </li>
+                            <li class="has-submenu">
+                             <a href=""><i class="zmdi zmdi-case"></i> <span> Jobs </span> </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="/interface/jobs"><i class=""></i>Add jobs</a>
+                                </li>
+
+                                <li>
+                                    <a href="/interface/jobs/show"><i class=""></i>Show jobs</a>
+                                </li>
+                            </ul>
                             <li>
                              <a href="interface/application"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Applications </span></a>
                             </li>
-                            <li>
-                             <a href="/interface/user"><i class="zmdi zmdi-account"></i> <span> Users </span></a>
+                            <li class="has-submenu">
+                                <a href="#"><i class="fa fa-group"></i> <span> Members </span> </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="/interface/user"><i class=""></i>Users</a>
+                                    </li>
+                                    <li>
+                                        <a href="/interface/group"><i class=""></i>Groups</a>
+                                    </li>
+                                </ul>
                             </li>
 
-                            <li>
-                                <a href="/interface/group"><i class="zmdi zmdi-group"></i> <span> Groups </span></a>
-                            </li>
+
                             <li>
                              <a href="interface/settings"><i class="zmdi zmdi-settings"></i> <span> Settings </span></a>
                             </li>
+
                         </ul>
                     </div>
                 </div>
