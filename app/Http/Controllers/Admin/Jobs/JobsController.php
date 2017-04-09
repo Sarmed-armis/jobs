@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Jobs;
 
 use App\Http\Requests\Admin\Jobs\Add;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\jobs\Delete;
 use App\Models\QuestionTypes as questionTypeModel;
 use App\Models\Departments as departmentModel;
 use App\Models\Locations as locationModel;
@@ -32,7 +33,7 @@ class JobsController extends Controller
     public function index()
     {
         $languages = languagesModel::all();
-        
+
         $questionsType = questionTypeModel::all();
 
         $departments = departmentModel::all();
@@ -63,6 +64,22 @@ class JobsController extends Controller
             "jobs" => $jobs
         ));
 
+    }
+
+    public function delete(Delete $request)
+    {
+
+        $jobs=jobsModel::find($request->input('id'));
+
+        $jobs->requirements()->delete();
+
+        $jobs->responsibilities()->delete();
+
+        $jobs->questions()->delete();
+        
+        $jobs->delete();
+
+        return"success";
     }
 
     /**
@@ -100,9 +117,7 @@ class JobsController extends Controller
         }
         return $detailsOfArray;
 
-
     }
-
 
     /**
      * this is function for store new jobs with all details

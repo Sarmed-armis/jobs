@@ -30,6 +30,7 @@ Route::group(['prefix' => '/interface', 'middleware' => 'AllowedIP'], function (
     Route::get('jobs/show','Admin\Jobs\JobsController@show');
     Route::post('jobs/add','Admin\Jobs\JobsController@add');
     Route::post('jobs/details','Admin\Jobs\JobsController@details');
+    Route::post('jobs/delete','Admin\Jobs\JobsController@delete');
 
 
 

@@ -77,12 +77,8 @@
                                     <td>{{$job->min_age}}</td>
                                     <td>{{$job->max_age}}</td>
                                     <td>
-                                        <button type="button"
-                                                class="btn btn-danger waves-effect waves-light delete fa fa-trash"
-                                                id="{{$job->id}}"></button>
+                                        <button type="button" class="btn btn-danger waves-effect waves-light delete fa fa-trash" id="{{$job->id}}"></button>
                                     </td>
-
-
                                 </tr>
                             @endforeach
                             </tbody>
@@ -95,6 +91,26 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="DeleteModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">delete of jobs</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="lead">
+                    <p>Are sure you want to delete this jobs!!</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                        <button type="button" class="btn btn-danger" id="performDelete" >Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="DetailsModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -115,7 +131,12 @@
                 </div>
             </div>
         </div>
-        @endsection
+
+
+
+
+
+            @endsection
         @section('js')
             <script>
                 $(document).ready(function () {
@@ -190,7 +211,49 @@
 
                     });
 
+                $(document).on('click','.delete',function () {
+                   var id=$(this).attr('id');
+                   $('#DeleteModal').modal('show');
+                   $('#performDelete').on('click',function () {
+                       var token = $('#token').val();
+                       $.ajax({
+                           type: "POST",
+                           url: '/interface/jobs/delete',
+                           data: {
+                               id: id,
+                               _token: token
 
+                           },
+                           success: function () {
+                               Command: toastr["success"]("successfully jobs deleted", "jobs Delete")
+                               toastr.options = {
+                                   "closeButton": false,
+                                   "debug": false,
+                                   "newestOnTop": true,
+                                   "progressBar": true,
+                                   "positionClass": "toast-top-center",
+                                   "preventDuplicates": false,
+                                   "onclick": null,
+                                   "showDuration": "300",
+                                   "hideDuration": "1000",
+                                   "timeOut": "1000",
+                                   "extendedTimeOut": "1000",
+                                   "showEasing": "swing",
+                                   "hideEasing": "linear",
+                                   "showMethod": "fadeIn",
+                                   "hideMethod": "fadeOut"
+                               }
+                               setTimeout(function () {
+                                   window.location.reload();
+                               }, 1000);
+                           },
+                           error: function (msg) {
+                               console.log(msg)
+                           }
+                       });
+                   });
+
+                });
                 });
             </script>
 @endsection

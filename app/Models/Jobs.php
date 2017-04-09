@@ -58,4 +58,15 @@ class Jobs extends Model
     {
         return $this->hasMany('App\Models\Questions','job_id','id');
     }
+
+
+    public function delete()
+    {
+        $image="uploads/images/".$this->image;
+
+        if(file_exists($image)){
+            @unlink($image);
+        }
+        parent::delete();
+    }
 }
