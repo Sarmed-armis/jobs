@@ -65,7 +65,11 @@ class JobsController extends Controller
         ));
 
     }
-
+    /**
+     * this is function for delete jobs
+     * @parama id
+     * delete  all requirements,responsibilities, questions,and image form file upload/images
+     **/
     public function delete(Delete $request)
     {
 
@@ -76,7 +80,7 @@ class JobsController extends Controller
         $jobs->responsibilities()->delete();
 
         $jobs->questions()->delete();
-        
+
         $jobs->delete();
 
         return"success";
